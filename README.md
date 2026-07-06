@@ -11,7 +11,7 @@ SkyCeil is a production-minded full-stack airspace visualization app that turns 
 - Three.js renderer with object pooling, shader glow, trails, dead reckoning, and display modes.
 - Runtime location panel with browser geolocation and manual lat/lon input.
 - Projector calibration with four-corner homography solving.
-- CI, Dockerfile, Render blueprint, tests, linting, typechecking, and docs.
+- CI, Dockerfile, Render blueprint, Vercel adapter, tests, linting, typechecking, and docs.
 
 ## Screens
 
@@ -94,6 +94,6 @@ npm run build
 
 ## Deployment
 
-Use the included `render.yaml` for a Render Blueprint deployment, or use the Dockerfile for any Node-capable host.
+Use the included `render.yaml` for a Render Blueprint deployment, the Vercel adapter for a hosted portfolio demo, or the Dockerfile for any Node-capable host.
 
 See [docs/deployment.md](docs/deployment.md).

@@ -18,7 +18,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test --config apps/web/playwright.config.ts",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present \u0026\u0026 tsc -p tsconfig.vercel.json",
     "format:check": "prettier --check .",
     "start": "npm run start --workspace @skyceil/server"
   },

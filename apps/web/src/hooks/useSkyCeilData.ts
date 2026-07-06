@@ -17,6 +17,19 @@ const apiOrigin =
     /\/$/,
     "",
   ) ?? "";
+const socketPath =
+  (import.meta.env.VITE_SKYCEIL_SOCKET_PATH as string | undefined) ??
+  "/socket.io";
+const socketTransports = (
+  (import.meta.env.VITE_SKYCEIL_SOCKET_TRANSPORTS as string | undefined) ??
+  "websocket,polling"
+)
+  .split(",")
+  .map((transport) => transport.trim())
+  .filter(
+    (transport): transport is "websocket" | "polling" =>
+      transport === "websocket" || transport === "polling",
+  );
 
 export type LocationUpdate = {
   latitude: number;
@@ -118,8 +131,11 @@ export function useSkyCeilData(): SkyCeilData {
     const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
       apiOrigin || undefined,
       {
-        path: "/socket.io",
-        transports: ["websocket", "polling"],
+        path: socketPath,
+        transports:
+          socketTransports.length > 0
+            ? socketTransports
+            : ["websocket", "polling"],
       },
     );
     socketRef.current = socket;

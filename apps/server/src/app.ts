@@ -24,12 +24,26 @@ export type AppServices = {
   config: AppConfig;
   airspace: AirspaceService;
   calibration: CalibrationService;
+  apiBasePath?: string;
   realtime?: RealtimeService;
   staticDir?: string;
 };
 
 export function createApp(services: AppServices): Express {
   const app = express();
+
+  if (services.apiBasePath) {
+    app.use((request, _response, next) => {
+      const basePath = services.apiBasePath as string;
+      if (request.url === basePath) {
+        request.url = "/";
+      } else if (request.url.startsWith(`${basePath}/`)) {
+        request.url = request.url.slice(basePath.length);
+      }
+      next();
+    });
+  }
+
   app.use(express.json({ limit: "1mb" }));
   app.use(
     cors({

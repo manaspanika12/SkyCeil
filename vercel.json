@@ -1,0 +1,13 @@
+{
+  "framework": "vite",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "apps/web/dist",
+  "env": {
+    "SKYCEIL_PROVIDER": "mock",
+    "SKYCEIL_CORS_ORIGIN": "*",
+    "VITE_SKYCEIL_API_URL": "/api/server",
+    "VITE_SKYCEIL_SOCKET_PATH": "/api/server/socket.io",
+    "VITE_SKYCEIL_SOCKET_TRANSPORTS": "websocket"
+  }
+}

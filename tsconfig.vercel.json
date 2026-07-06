@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@skyceil/shared": ["packages/shared/src/index.ts"],
+      "@skyceil/geo": ["packages/geo/src/index.ts"]
+    }
+  },
+  "include": [
+    "api/**/*.ts",
+    "apps/server/src/**/*.ts",
+    "packages/shared/src/**/*.ts",
+    "packages/geo/src/**/*.ts"
+  ]
+}

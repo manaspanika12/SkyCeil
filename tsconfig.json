@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/shared" },
+    { "path": "packages/geo" },
+    { "path": "packages/renderer-core" },
+    { "path": "apps/server" },
+    { "path": "apps/web" }
+  ]
+}

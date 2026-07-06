@@ -1,0 +1,43 @@
+{
+  "name": "skyceil",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Real-time ceiling projection airspace visualization for local room projectors.",
+  "type": "module",
+  "workspaces": [
+    "packages/shared",
+    "packages/geo",
+    "packages/renderer-core",
+    "apps/server",
+    "apps/web"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:packages": "npm run build --workspace @skyceil/shared \u0026\u0026 npm run build --workspace @skyceil/geo \u0026\u0026 npm run build --workspace @skyceil/renderer-core",
+    "dev": "npm run build:packages \u0026\u0026 concurrently -n server,web -c cyan,blue \"npm run dev --workspace @skyceil/server\" \"npm run dev --workspace @skyceil/web\"",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:e2e": "playwright test --config apps/web/playwright.config.ts",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "format:check": "prettier --check .",
+    "start": "npm run start --workspace @skyceil/server"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.5",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.18.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.20.0",
+    "vitest": "^2.1.8",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@types/three": "^0.171.0",
+    "vite": "^6.0.7"
+  },
+  "engines": {
+    "node": "\u003e=20.11.0"
+  }
+}

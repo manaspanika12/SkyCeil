@@ -1,0 +1,2 @@
+export const EARTH_RADIUS_METERS = 6_371_008.8;
+export const METERS_PER_NAUTICAL_MILE = 1852;

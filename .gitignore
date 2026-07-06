@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.vite/
+.cache/
+playwright-report/
+test-results/
+data/*.json
+!data/.gitkeep
+.env
+.env.local
+*.log
+data/*.tmp
+*.tsbuildinfo

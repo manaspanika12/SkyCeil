@@ -1,0 +1,9 @@
+﻿node_modules
+dist
+coverage
+playwright-report
+test-results
+data/*.json
+data/*.tmp
+.env
+.git

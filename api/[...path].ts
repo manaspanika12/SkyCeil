@@ -6,9 +6,8 @@ process.env.SKYCEIL_PROVIDER ??= "mock";
 process.env.SKYCEIL_CORS_ORIGIN ??= "*";
 
 const runtime = await createSkyCeilRuntime({
-  apiBasePath: "/api/server",
   dataDir: path.join(tmpdir(), "skyceil"),
-  socketPath: "/api/server/socket.io",
+  socketPath: "/api/socket.io",
 });
 
 export default runtime.httpServer;

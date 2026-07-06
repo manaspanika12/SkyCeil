@@ -145,9 +145,8 @@ export function useSkyCeilData(): SkyCeilData {
       setError(null);
     });
     socket.on("disconnect", () => setConnected(false));
-    socket.on("connect_error", (socketError) => {
+    socket.on("connect_error", () => {
       setConnected(false);
-      setError(socketError.message);
     });
     socket.on(socketEvents.aircraftSnapshot, setAircraft);
     socket.on(socketEvents.aircraftRemoved, (icaoIds) => {
@@ -166,6 +165,25 @@ export function useSkyCeilData(): SkyCeilData {
       socketRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    const intervalMs = config?.flightData.pollIntervalMs ?? 5000;
+    const timer = window.setInterval(() => {
+      if (!socketRef.current?.connected) {
+        void refreshCurrentAircraft().catch((refreshError) => {
+          setError(
+            refreshError instanceof Error
+              ? refreshError.message
+              : String(refreshError),
+          );
+        });
+      }
+    }, intervalMs);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [config?.flightData.pollIntervalMs, refreshCurrentAircraft]);
 
   const updateLocation = useCallback(
     async (location: LocationUpdate) => {

@@ -20,8 +20,8 @@ This repository includes `render.yaml` for Render Blueprint deployment.
 SkyCeil also includes a Vercel adapter:
 
 - `vercel.json` builds the Vite frontend from `apps/web`.
-- `api/server.ts` exposes the Express + Socket.IO backend as a Vercel Function.
-- The Vercel build env points the frontend to `/api/server`.
+- `api/[...path].ts` exposes the Express + Socket.IO backend as a Vercel Function for `/api/*`.
+- The Vercel build env points the frontend to same-origin `/api/*`.
 - The deployed demo uses `SKYCEIL_PROVIDER=mock` by default.
 
 Deploy from the Vercel dashboard:
@@ -32,7 +32,7 @@ Deploy from the Vercel dashboard:
 4. Make sure Fluid Compute is enabled if your project settings ask for it, because Vercel WebSockets require it.
 5. Deploy.
 
-The Vercel deployment is excellent for a resume demo. Render, Fly.io, Railway, or Docker are still better fits for a continuously running room installation because calibration persistence and polling live in an always-on Node process there.
+The frontend also falls back to REST polling if Socket.IO cannot connect. This keeps the Vercel resume demo usable even when preview deployment protection or WebSocket beta settings block realtime connections. Render, Fly.io, Railway, or Docker are still better fits for a continuously running room installation because calibration persistence and polling live in an always-on Node process there.
 
 ## Live OpenSky mode
 

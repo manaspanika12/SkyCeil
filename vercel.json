@@ -3,6 +3,16 @@
   "installCommand": "npm ci --include=dev",
   "buildCommand": "npm run build",
   "outputDirectory": "apps/web/dist",
+  "rewrites": [
+    {
+      "source": "/api/socket.io/:path*",
+      "destination": "/api/server"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/api/server"
+    }
+  ],
   "env": {
     "SKYCEIL_PROVIDER": "mock",
     "SKYCEIL_CORS_ORIGIN": "*",

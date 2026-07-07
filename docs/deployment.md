@@ -20,7 +20,8 @@ This repository includes `render.yaml` for Render Blueprint deployment.
 SkyCeil also includes a Vercel adapter:
 
 - `vercel.json` builds the Vite frontend from `apps/web`.
-- `api/[...path].ts` exposes the Express + Socket.IO backend as a Vercel Function for `/api/*`.
+- `api/server.ts` exposes the Express + Socket.IO backend as a Vercel Function.
+- `vercel.json` rewrites `/api/*` requests into that function.
 - The Vercel build env points the frontend to same-origin `/api/*`.
 - The deployed demo uses `SKYCEIL_PROVIDER=mock` by default.
 

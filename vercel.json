@@ -3,6 +3,11 @@
   "installCommand": "npm ci --include=dev",
   "buildCommand": "npm run build",
   "outputDirectory": "apps/web/dist",
+  "functions": {
+    "api/server.ts": {
+      "includeFiles": "config/default.json"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/socket.io/:path*",

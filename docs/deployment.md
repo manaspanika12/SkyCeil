@@ -22,6 +22,7 @@ SkyCeil also includes a Vercel adapter:
 - `vercel.json` builds the Vite frontend from `apps/web`.
 - `api/server.ts` exposes the Express + Socket.IO backend as a Vercel Function.
 - `vercel.json` rewrites `/api/*` requests into that function.
+- `vercel.json` explicitly includes `config/default.json` in the function bundle.
 - The Vercel build env points the frontend to same-origin `/api/*`.
 - The deployed demo uses `SKYCEIL_PROVIDER=mock` by default.
 
